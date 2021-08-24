@@ -1,26 +1,42 @@
 import React, { useState } from "react";
 
 export default function TextForm(props) {
-  const [text, setText] = useState("Enter the text");
+  const [text, setText] = useState("");
   //   setText("hemlo");
   const handleOnClick = () => {
     let temp = text.toUpperCase();
     setText(temp);
   };
+
   const handleDownClick = () => {
     let temp2 = text.toLowerCase();
     setText(temp2);
   };
+
   const handleClearText = () => {
     let temp = "";
     setText(temp);
   };
-  // const handleCapitalText = () => {
-   
-  // };
+
+  const CopyText = () => {
+   var text= document.getElementById("myBox");
+   text.select();
+   navigator.clipboard.writeText(text.value);
+  };
+
+  const handleExtraSpaces =()=>{
+    let newText= text.split(/[ ]+/);
+    setText(newText.join(" "))
+  }
+
   const handleOnChange = (event) => {
     setText(event.target.value);
   };
+
+  const myStyle={
+    border:"2px solid blue",
+    width:"98%",
+  }
   return (
     <>
       <div className="container">
@@ -28,7 +44,8 @@ export default function TextForm(props) {
         <div className="mb-3">
           <textarea
             className="form-control"
-            id="exampleFormControlTextarea1"
+            placeholder="Enter the Text"
+            id="myBox"
             rows="6"
             value={text}
             onChange={handleOnChange}
@@ -36,34 +53,45 @@ export default function TextForm(props) {
         </div>
         <button
           type="button"
-          className="btn btn-primary mx-1"
+          className="btn btn-primary mx-2 my-2"
           onClick={handleOnClick}
         >
           TO UPPERCASE
         </button>
         <button
           type="button"
-          className="btn btn-primary mx-1"
+          className="btn btn-success mx-2 my-2"
           onClick={handleDownClick}
         >
           to lowercase
         </button>
         <button
           type="button"
-          className="btn btn-primary mx-1"
+          className="btn btn-danger mx-2 my-2"
           onClick={handleClearText}
         >
           Clear Text
         </button>
-        {/* <button
+
+        <button
           type="button"
-          className="btn btn-primary mx-1"
-          onClick={handleCapitalText}
+          className="btn btn-warning mx-2 my-2"
+          onClick={CopyText}
         >
-          Capitalized Text
-        </button> */}
+          Copy To Clipboard
+        </button>
+        
+        <button
+          type="button"
+          className="btn btn-dark mx-2 my-2"
+          onClick={handleExtraSpaces
+          }
+        >
+          Remove Extra space
+        </button>
+
       </div>
-      <div className="container my-3">
+      <div className="container my-3" style={myStyle}>
         <h2>Text Summary</h2>
         <p>No. of Words : {text.split(" ").length}</p>
         <p>No. of Characters : {text.length}</p>

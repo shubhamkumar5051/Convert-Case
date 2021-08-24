@@ -6,7 +6,7 @@ export default function navbar(props) {
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
       <div className="container-fluid">
         <a className="navbar-brand" href="/">
-          {props.title}
+        ♻️ {props.title}
         </a>
         <button
           className="navbar-toggler"
@@ -27,8 +27,8 @@ export default function navbar(props) {
               </a>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="/">
-                Link
+              <a className="nav-link" href="./src/components/AboutUs.js">
+               About Us
               </a>
             </li>
           </ul>
