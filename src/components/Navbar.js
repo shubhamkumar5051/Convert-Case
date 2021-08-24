@@ -3,10 +3,12 @@ import PropTypes from "prop-types"; //impt
 
 export default function navbar(props) {
   return (
-    <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
+    <nav
+      className={`navbar navbar-expand-lg navbar-${props.mode} bg-${props.mode}`}
+    >
       <div className="container-fluid">
         <a className="navbar-brand" href="/">
-        ♻️ {props.title}
+          ♻️ {props.title}
         </a>
         <button
           className="navbar-toggler"
@@ -28,10 +30,24 @@ export default function navbar(props) {
             </li>
             <li className="nav-item">
               <a className="nav-link" href="./src/components/AboutUs.js">
-               About Us
+                About Us
               </a>
             </li>
           </ul>
+          <div className="form-check form-switch mx-2">
+            <input
+              className="form-check-input"
+              type="checkbox"
+              id="flexSwitchCheckDefault"
+              onClick={props.toggleButton}
+            />
+            <label
+              className="form-check-label text"
+              htmlFor="flexSwitchCheckDefault"
+            >
+              {props.btntext}
+            </label>
+          </div>
           <form className="d-flex">
             <input
               className="form-control me-2"

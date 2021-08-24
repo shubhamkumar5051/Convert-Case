@@ -7,7 +7,6 @@ export default function AboutUs() {
     border: "2px solid black",
   });
   const [btntext, setBtnText] = useState("Enable Light mode");
-
   const toggleStyle = () => {
     if (myStyle.color === "white") {
       setMyStyle({
@@ -132,7 +131,11 @@ export default function AboutUs() {
           </div>
         </div>
         <div className="container my-2">
-          <button onClick={toggleStyle} type="button" class="btn btn-danger">
+          <button
+            onClick={toggleStyle}
+            type="button"
+            className="btn btn-danger"
+          >
             {btntext}
           </button>
         </div>
