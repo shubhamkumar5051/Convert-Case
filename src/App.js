@@ -3,16 +3,29 @@ import "./App.css";
 import Navbar from "./components/Navbar";
 import TextForm from "./components/TextForm";
 import React, { useState } from "react";
+import Alert from "./components/Alert";
 
 function App() {
   const [usermode, setMode] = useState("light");
-  let toggleButton = () => {
+  const [alert, setAlert] = useState(null);
+  //function to show alert msg
+  const showAlert = (message, type) => {
+    setAlert({
+      msg: message,
+      type: type,
+    });
+  };
+
+  //toggle function
+  const toggleButton = () => {
     if (usermode === "light") {
       setMode("dark");
       document.body.style.backgroundColor = "#0d0e1a";
+      showAlert("Dark mode has been enabled", "success");
     } else {
       setMode("light");
       document.body.style.backgroundColor = "white";
+      showAlert("Light mode has been enabled", "success");
     }
   };
   return (
@@ -23,10 +36,12 @@ function App() {
         mode={usermode}
         toggleButton={toggleButton}
       />
+      <Alert alert={alert} />
       <div className="container my-4">
         <TextForm
           mode={usermode}
           heading="Enter the text 📜 to Analyze below 👇"
+          showAlert={showAlert}
         />
         {/* <AboutUs /> */}
       </div>

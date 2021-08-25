@@ -6,27 +6,32 @@ export default function TextForm(props) {
   const handleOnClick = () => {
     let temp = text.toUpperCase();
     setText(temp);
+    props.showAlert("Converted to UPPERCASE", "success");
   };
 
   const handleDownClick = () => {
     let temp2 = text.toLowerCase();
     setText(temp2);
+    props.showAlert("Converted to lowercase", "success");
   };
 
   const handleClearText = () => {
     let temp = "";
     setText(temp);
+    props.showAlert("Cleared", "success");
   };
 
   const CopyText = () => {
     var text = document.getElementById("myBox");
     text.select();
     navigator.clipboard.writeText(text.value);
+    props.showAlert("Copied", "success");
   };
 
   const handleExtraSpaces = () => {
     let newText = text.split(/[ ]+/);
     setText(newText.join(" "));
+    props.showAlert("Extra space Removed", "success");
   };
 
   const handleOnChange = (event) => {
@@ -87,7 +92,7 @@ export default function TextForm(props) {
           className="btn btn-warning mx-2 my-2"
           onClick={CopyText}
         >
-          <i class="fas fa-copy"> Copy to Clipboard</i>
+          <i className="fas fa-copy"> Copy to Clipboard</i>
         </button>
 
         <button
