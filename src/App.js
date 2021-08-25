@@ -9,7 +9,7 @@ function App() {
   let toggleButton = () => {
     if (usermode === "light") {
       setMode("dark");
-      document.body.style.backgroundColor = "grey";
+      document.body.style.backgroundColor = "#0d0e1a";
     } else {
       setMode("light");
       document.body.style.backgroundColor = "white";
@@ -24,7 +24,10 @@ function App() {
         toggleButton={toggleButton}
       />
       <div className="container my-4">
-        <TextForm heading="Enter the text 📜 to Analyze below 👇" />
+        <TextForm
+          mode={usermode}
+          heading="Enter the text 📜 to Analyze below 👇"
+        />
         {/* <AboutUs /> */}
       </div>
     </>
