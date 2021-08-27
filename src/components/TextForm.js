@@ -6,19 +6,19 @@ export default function TextForm(props) {
   const handleOnClick = () => {
     let temp = text.toUpperCase();
     setText(temp);
-    props.showAlert("Converted to UPPERCASE", "success");
+    if (text.length > 0) props.showAlert("Converted to UPPERCASE", "success");
   };
 
   const handleDownClick = () => {
     let temp2 = text.toLowerCase();
     setText(temp2);
-    props.showAlert("Converted to lowercase", "success");
+    if (text.length > 0) props.showAlert("Converted to lowercase", "success");
   };
 
   const handleClearText = () => {
     let temp = "";
     setText(temp);
-    props.showAlert("Cleared", "success");
+    if (text.length > 0) props.showAlert("Cleared", "success");
   };
 
   const CopyText = () => {
@@ -31,7 +31,7 @@ export default function TextForm(props) {
   const handleExtraSpaces = () => {
     let newText = text.split(/[ ]+/);
     setText(newText.join(" "));
-    props.showAlert("Extra space Removed", "success");
+    if (text.length > 0) props.showAlert("Extra space Removed", "success");
   };
 
   const handleOnChange = (event) => {
