@@ -6,19 +6,34 @@ export default function TextForm(props) {
   const handleOnClick = () => {
     let temp = text.toUpperCase();
     setText(temp);
-    if (text.length > 0) props.showAlert("Converted to UPPERCASE", "success");
+    if (
+      text.split(" ").filter((element) => {
+        return element.length !== 0;
+      }).length > 0
+    )
+      props.showAlert("Converted to UPPERCASE", "success");
   };
 
   const handleDownClick = () => {
     let temp2 = text.toLowerCase();
     setText(temp2);
-    if (text.length > 0) props.showAlert("Converted to lowercase", "success");
+    if (
+      text.split(" ").filter((element) => {
+        return element.length !== 0;
+      }).length > 0
+    )
+      props.showAlert("Converted to lowercase", "success");
   };
 
   const handleClearText = () => {
     let temp = "";
     setText(temp);
-    if (text.length > 0) props.showAlert("Cleared", "success");
+    if (
+      text.split(" ").filter((element) => {
+        return element.length !== 0;
+      }).length > 0
+    )
+      props.showAlert("Cleared", "success");
   };
 
   const CopyText = () => {
@@ -66,6 +81,7 @@ export default function TextForm(props) {
           ></textarea>
         </div>
         <button
+          disabled={text.length === 0}
           type="button"
           className="btn btn-primary mx-2 my-2"
           onClick={handleOnClick}
@@ -73,6 +89,7 @@ export default function TextForm(props) {
           TO UPPERCASE
         </button>
         <button
+          disabled={text.length === 0}
           type="button"
           className="btn btn-success mx-2 my-2"
           onClick={handleDownClick}
@@ -80,6 +97,7 @@ export default function TextForm(props) {
           to lowercase
         </button>
         <button
+          disabled={text.length === 0}
           type="button"
           className="btn btn-danger mx-2 my-2"
           onClick={handleClearText}
@@ -88,6 +106,7 @@ export default function TextForm(props) {
         </button>
 
         <button
+          disabled={text.length === 0}
           type="button"
           className="btn btn-warning mx-2 my-2"
           onClick={CopyText}
@@ -96,6 +115,7 @@ export default function TextForm(props) {
         </button>
 
         <button
+          disabled={text.length === 0}
           type="button"
           className="btn btn-dark mx-2 my-2"
           onClick={handleExtraSpaces}
