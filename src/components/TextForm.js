@@ -25,7 +25,7 @@ export default function TextForm(props) {
     var text = document.getElementById("myBox");
     text.select();
     navigator.clipboard.writeText(text.value);
-    props.showAlert("Copied", "success");
+    if (text.length > 0) props.showAlert("Copied", "success");
   };
 
   const handleExtraSpaces = () => {
@@ -111,7 +111,14 @@ export default function TextForm(props) {
         }}
       >
         <h2>Text Summary</h2>
-        <p>No. of Words : {text.split(" ").length}</p>
+        <p>
+          No. of Words :{" "}
+          {
+            text.split(" ").filter((element) => {
+              return element.length !== 0;
+            }).length
+          }
+        </p>
         <p>No. of Characters : {text.length}</p>
         <p>{0.008 * text.split(" ").length} Minute Read</p>
         <h2>preview</h2>

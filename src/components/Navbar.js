@@ -29,7 +29,7 @@ export default function navbar(props) {
               </a>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="./src/components/AboutUs.js">
+              <a className="nav-link" href="/">
                 About Us
               </a>
             </li>
