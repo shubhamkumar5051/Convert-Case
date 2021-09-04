@@ -16,7 +16,7 @@ function App() {
     });
     setTimeout(() => {
       setAlert(null);
-    }, 1500);
+    }, 2000);
   };
 
   //toggle function
@@ -24,7 +24,7 @@ function App() {
     if (usermode === "light") {
       setMode("dark");
       document.body.style.backgroundColor = "#0d0e1a";
-      showAlert("Dark mode has been enabled", "success");
+      showAlert("Dark mode has been enabled", "Success");
       document.title = "Convert-Case Dark-mode";
     } else {
       setMode("light");

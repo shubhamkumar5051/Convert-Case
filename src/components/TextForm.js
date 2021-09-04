@@ -37,10 +37,10 @@ export default function TextForm(props) {
   };
 
   const CopyText = () => {
-    var text = document.getElementById("myBox");
-    text.select();
-    navigator.clipboard.writeText(text.value);
-    if (text.length > 0) props.showAlert("Copied", "success");
+    // var text = document.getElementById("myBox");
+    // text.select();
+    navigator.clipboard.writeText(text); //navigator api
+    props.showAlert("Text Copied", "success");
   };
 
   const handleExtraSpaces = () => {
@@ -86,7 +86,7 @@ export default function TextForm(props) {
           className="btn btn-primary mx-2 my-2"
           onClick={handleOnClick}
         >
-          TO UPPERCASE
+          TO UPPERCASE <i className="fas fa-arrow-up mx-1"></i>
         </button>
         <button
           disabled={text.length === 0}
@@ -94,7 +94,7 @@ export default function TextForm(props) {
           className="btn btn-success mx-2 my-2"
           onClick={handleDownClick}
         >
-          to lowercase
+          to lowercase <i className="fas fa-arrow-down"></i>
         </button>
         <button
           disabled={text.length === 0}
@@ -102,7 +102,7 @@ export default function TextForm(props) {
           className="btn btn-danger mx-2 my-2"
           onClick={handleClearText}
         >
-          Clear Text
+          Clear Text <i className="far fa-trash-alt mx-1"></i>
         </button>
 
         <button
@@ -134,7 +134,8 @@ export default function TextForm(props) {
         <p>
           No. of Words :{" "}
           {
-            text.split(" ").filter((element) => {
+            //it will split white space with one or more. and white space include new line also
+            text.split(/\s+/).filter((element) => {
               return element.length !== 0;
             }).length
           }
@@ -145,7 +146,7 @@ export default function TextForm(props) {
             text.split(" ").filter((element) => {
               return element.length !== 0;
             }).length}{" "}
-          Minute Read
+          Minutes Read
         </p>
         <h2>preview</h2>
         <p>{text.length > 0 ? text : "Enter something to preview here 👇🏾"}</p>
