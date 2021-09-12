@@ -4,6 +4,7 @@ import Navbar from "./components/Navbar";
 import TextForm from "./components/TextForm";
 import React, { useState } from "react";
 import Alert from "./components/Alert";
+import Footer from "./components/Footer";
 
 function App() {
   const [usermode, setMode] = useState("light");
@@ -50,6 +51,7 @@ function App() {
         />
         {/* <AboutUs /> */}
       </div>
+      <Footer />
     </>
   );
 }
