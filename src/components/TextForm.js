@@ -53,6 +53,15 @@ export default function TextForm(props) {
     setText(event.target.value);
   };
 
+  const toCapitalize = () => {
+    const mySentence = text;
+    const finalSentence = mySentence.replace(/(^\w{1})|(\s+\w{1})/g, (letter) =>
+      letter.toUpperCase()
+    );
+    setText(finalSentence);
+    props.showAlert("Captialize", "success");
+  };
+
   // const myStyle = {
   //   border: "2px solid blue",
   //   width: "98%",
@@ -121,6 +130,14 @@ export default function TextForm(props) {
           onClick={handleExtraSpaces}
         >
           Remove Extra space
+        </button>
+        <button
+          disabled={text.length === 0}
+          type="button"
+          className="btn btn-primary mx-2 my-2"
+          onClick={toCapitalize}
+        >
+          Pascal Case
         </button>
       </div>
       <div

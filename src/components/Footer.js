@@ -4,11 +4,10 @@ export default function Footer() {
   return (
     <div>
       <>
-        <footer className="bg-dark text-center text-white">
+        <footer className="bg-light text-center text-white">
           {/* <!-- Grid container --> */}
           <div className="container p-4 pb-0">
             {/* <!-- Section: Social media --> */}
-
             <section className="mb-4">
               {/* <!-- Facebook --> */}
               <a
