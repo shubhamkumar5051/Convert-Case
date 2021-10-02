@@ -52,7 +52,7 @@ export default function TextForm(props) {
   const handleOnChange = (event) => {
     setText(event.target.value);
   };
-
+  //title case funtion
   const toCapitalize = () => {
     const mySentence = text;
     const finalSentence = mySentence.replace(/(^\w{1})|(\s+\w{1})/g, (letter) =>
@@ -61,6 +61,12 @@ export default function TextForm(props) {
     setText(finalSentence);
     props.showAlert("Captialize", "success");
   };
+  //revrse string logic
+  function toReverse() {
+    const mySentence = text;
+    const finalSentence = mySentence.split("").reverse().join("");
+    setText(finalSentence);
+  }
 
   // const myStyle = {
   //   border: "2px solid blue",
@@ -92,7 +98,7 @@ export default function TextForm(props) {
         <button
           disabled={text.length === 0}
           type="button"
-          className="btn btn-primary mx-2 my-2"
+          className="btn btn-primary btn-sm mx-2 my-2"
           onClick={handleOnClick}
         >
           TO UPPERCASE <i className="fas fa-arrow-up mx-1"></i>
@@ -100,15 +106,34 @@ export default function TextForm(props) {
         <button
           disabled={text.length === 0}
           type="button"
-          className="btn btn-success mx-2 my-2"
+          className="btn btn-sm btn-success mx-2 my-2"
           onClick={handleDownClick}
         >
           to lowercase <i className="fas fa-arrow-down"></i>
         </button>
+
         <button
           disabled={text.length === 0}
           type="button"
-          className="btn btn-danger mx-2 my-2"
+          className="btn btn-warning btn-sm mx-2 my-2"
+          onClick={toReverse}
+        >
+          <b class="fas fa-history"> Reverse String</b>
+        </button>
+
+        <button
+          disabled={text.length === 0}
+          type="button"
+          className="btn btn-dark btn-sm mx-2 my-2"
+          onClick={toCapitalize}
+        >
+          Title Case
+        </button>
+
+        <button
+          disabled={text.length === 0}
+          type="button"
+          className="btn btn-danger btn-sm mx-2 my-2"
           onClick={handleClearText}
         >
           Clear Text <i className="far fa-trash-alt mx-1"></i>
@@ -117,7 +142,7 @@ export default function TextForm(props) {
         <button
           disabled={text.length === 0}
           type="button"
-          className="btn btn-warning mx-2 my-2"
+          className="btn btn-warning btn-sm mx-2 my-2"
           onClick={CopyText}
         >
           <i className="fas fa-copy"> Copy to Clipboard</i>
@@ -126,18 +151,10 @@ export default function TextForm(props) {
         <button
           disabled={text.length === 0}
           type="button"
-          className="btn btn-dark mx-2 my-2"
+          className="btn btn-primary btn-sm mx-2 my-2"
           onClick={handleExtraSpaces}
         >
           Remove Extra space
-        </button>
-        <button
-          disabled={text.length === 0}
-          type="button"
-          className="btn btn-primary mx-2 my-2"
-          onClick={toCapitalize}
-        >
-          Title Case
         </button>
       </div>
       <div
