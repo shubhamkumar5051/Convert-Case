@@ -25,12 +25,12 @@ function App() {
     if (usermode === "light") {
       setMode("dark");
       document.body.style.backgroundColor = "#0d0e1a";
-      showAlert("Dark mode has been enabled", "success");
+      showAlert("Dark mode Enabled", "success");
       document.title = "Convert-Case Dark-mode";
     } else {
       setMode("light");
       document.body.style.backgroundColor = "white";
-      showAlert("Light mode has been enabled", "success");
+      showAlert("Light mode Enabled", "success");
       document.title = "Convert-Case Light-mode";
     }
   };

@@ -61,17 +61,33 @@ export default function TextForm(props) {
     setText(finalSentence);
     props.showAlert("Captialize", "success");
   };
-  //revrse string logic
+  //reverse string logic
   function toReverse() {
     const mySentence = text;
     const finalSentence = mySentence.split("").reverse().join("");
     setText(finalSentence);
   }
+  // download feature
+  function download(filename = "string-converter.txt") {
+    const mySentence = text;
+    var element = document.createElement("a");
+    element.setAttribute(
+      "href",
+      "data:text/plain;charset=utf-8," + encodeURIComponent(mySentence)
+    );
+    element.setAttribute("download", "string-converter");
 
-  // const myStyle = {
-  //   border: "2px solid blue",
-  //   width: "98%",
-  // };
+    element.style.display = "none";
+    document.body.appendChild(element);
+
+    element.click();
+    document.body.removeChild(element);
+    props.showAlert("Downloading...", "success");
+  }
+
+  // Start file download.
+  // download("string-converter.txt",text);
+
   return (
     <>
       <div
@@ -156,6 +172,14 @@ export default function TextForm(props) {
         >
           Remove Extra space
         </button>
+        <button
+          disabled={text.length === 0}
+          type="button"
+          className="btn btn-success btn-sm mx-2 my-2"
+          onClick={download}
+        >
+          <i class="fas fa-download"></i> Download
+        </button>
       </div>
       <div
         className="container my-3"
@@ -164,7 +188,7 @@ export default function TextForm(props) {
           border: props.mode === "light" ? "1px solid blue" : "1px solid white",
         }}
       >
-        <h2>Text Summary</h2>
+        <h2>Text Summary 📃</h2>
         <p>
           No. of Words :{" "}
           {
@@ -182,7 +206,7 @@ export default function TextForm(props) {
             }).length}{" "}
           Minutes Read
         </p>
-        <h2>preview</h2>
+        <h2>Preview Text</h2>
         <p>{text.length > 0 ? text : "Enter something to preview here 👇🏾"}</p>
       </div>
     </>
