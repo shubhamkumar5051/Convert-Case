@@ -137,7 +137,7 @@ export default function TextForm(props) {
           className="btn btn-primary mx-2 my-2"
           onClick={toCapitalize}
         >
-          Pascal Case
+          Title Case
         </button>
       </div>
       <div

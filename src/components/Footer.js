@@ -1,14 +1,15 @@
 import React from "react";
-
-export default function Footer() {
+// import PropTypes from "prop-types";
+export default function Footer(props) {
   return (
     <div>
       <>
-        <footer className="bg-light text-center text-white">
+        <footer className={`bg-${props.mode} text-center text-${props.mode}`}>
           {/* <!-- Grid container --> */}
+
           <div className="container p-4 pb-0">
             {/* <!-- Section: Social media --> */}
-            <section className="mb-4">
+            <section className="mb-1">
               {/* <!-- Facebook --> */}
               <a
                 className="btn btn-outline-light btn-floating m-1"
@@ -60,18 +61,16 @@ export default function Footer() {
               </a>
             </section>
           </div>
-
           {/* <!-- Copyright --> */}
           <div
             className="text-center p-3"
-            style={{ backgroundColor: `rgba(0, 0, 0, 0.7)` }}
+            // style={{ backgroundColor: `rgba(0, 0, 0, 0.7)` }}
           >
-            © 2021 Copyright-
             <a
-              className="text-white"
+              className={`text-${props.mode === "light" ? "dark" : "light"}`}
               href="https://portfolio-shubhamkr5051.netlify.app/"
             >
-              Shubham kumar
+              © 2021 Copyright- Shubham kumar
             </a>
           </div>
         </footer>

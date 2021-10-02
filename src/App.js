@@ -51,7 +51,7 @@ function App() {
         />
         {/* <AboutUs /> */}
       </div>
-      <Footer />
+      <Footer mode={usermode} />
     </>
   );
 }
