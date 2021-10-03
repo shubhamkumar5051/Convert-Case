@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-
+import axios from "axios";
 export default function TextForm(props) {
   const [text, setText] = useState("");
   //   setText("hemlo");
@@ -64,7 +64,7 @@ export default function TextForm(props) {
 
   //example logic
   const Example = () => {
-    const exampleString = `Welcome to string converter\nDeveloper contact : shubham kumar\n\nLets go.................. \nNow you can perform every operation `;
+    const exampleString = `Welcome to String Converter\nDeveloper Contact : Shubham Kumar\n\nNow you can Perform Every Operation Listed Below`;
     setText(exampleString);
   };
 
@@ -91,7 +91,43 @@ export default function TextForm(props) {
     document.body.removeChild(element);
     props.showAlert("Downloading...", "success");
   }
+  //encrypt
+  const Encrypt = () => {
+    var str = text;
+    var enc = window.btoa(str);
+    var res = enc;
+    setText(res);
+    props.showAlert("String is Encrypetd!", "success");
+  };
 
+  //grammer check
+  let handleGrammerCheck = () => {
+    let data = text.split(/[ ]+/).join("+");
+    axios({
+      url: `https://api.textgears.com/grammar?text=${data}!&language=en-GB&whitelist=&dictionary_id=&key=BssNrgSeKD9Th2Up`,
+    })
+      .then(function (response) {
+        if (response.data.description) {
+          props.showAlert(
+            "Plese set your key of api.Get it from https://textgears.com!",
+            "error"
+          );
+        } else {
+          let checkedText = text;
+          for (let i in response.data.response.errors) {
+            checkedText = checkedText.replace(
+              response.data.response.errors[i].bad,
+              response.data.response.errors[i].better[0]
+            );
+          }
+          setText(checkedText);
+          props.showAlert("Your Grammer Mistakes has been Fixed!", "success");
+        }
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  };
   return (
     <>
       <div
@@ -116,6 +152,14 @@ export default function TextForm(props) {
           ></textarea>
         </div>
         <button
+          // disabled={text.length === 0}
+          type="button"
+          className="btn btn-danger btn-sm mx-2 my-2"
+          onClick={Example}
+        >
+          Example
+        </button>
+        <button
           disabled={text.length === 0}
           type="button"
           className="btn btn-primary btn-sm mx-2 my-2"
@@ -138,7 +182,7 @@ export default function TextForm(props) {
           className="btn btn-warning btn-sm mx-2 my-2"
           onClick={toReverse}
         >
-          <b class="fas fa-history"> Reverse String</b>
+          <b className="fas fa-history"> Reverse String</b>
         </button>
 
         <button
@@ -182,15 +226,22 @@ export default function TextForm(props) {
           className="btn btn-success btn-sm mx-2 my-2"
           onClick={download}
         >
-          <i class="fas fa-download"></i> Download
+          <i className="fas fa-download"></i> Download
         </button>
         <button
-          // disabled={text.length === 0}
-          type="button"
-          className="btn btn-danger btn-sm mx-2 my-2"
-          onClick={Example}
+          disabled={text.length === 0}
+          className="btn btn-dark btn-sm mx-1 my-1"
+          onClick={handleGrammerCheck}
         >
-          Example
+          Fix Grammer mistakes
+        </button>
+
+        <button
+          disabled={text.length === 0}
+          className="btn btn-primary btn-sm mx-1 my-1"
+          onClick={Encrypt}
+        >
+          Encrypt Data
         </button>
       </div>
       <div
@@ -199,6 +250,7 @@ export default function TextForm(props) {
           color: props.mode === "light" ? "black" : "white",
           border: props.mode === "light" ? "1px solid blue" : "1px solid white",
         }}
+        n
       >
         <h2 style={{ paddingTop: "10px" }}>Text Summary 📃</h2>
         <p>
