@@ -61,6 +61,13 @@ export default function TextForm(props) {
     setText(finalSentence);
     props.showAlert("Captialize", "success");
   };
+
+  //example logic
+  const Example = () => {
+    const exampleString = `Welcome to string converter\nDeveloper contact : shubham kumar\n\nLets go.................. \nNow you can perform every operation `;
+    setText(exampleString);
+  };
+
   //reverse string logic
   function toReverse() {
     const mySentence = text;
@@ -84,9 +91,6 @@ export default function TextForm(props) {
     document.body.removeChild(element);
     props.showAlert("Downloading...", "success");
   }
-
-  // Start file download.
-  // download("string-converter.txt",text);
 
   return (
     <>
@@ -180,6 +184,14 @@ export default function TextForm(props) {
         >
           <i class="fas fa-download"></i> Download
         </button>
+        <button
+          // disabled={text.length === 0}
+          type="button"
+          className="btn btn-danger btn-sm mx-2 my-2"
+          onClick={Example}
+        >
+          Example
+        </button>
       </div>
       <div
         className="container my-3"
@@ -188,9 +200,9 @@ export default function TextForm(props) {
           border: props.mode === "light" ? "1px solid blue" : "1px solid white",
         }}
       >
-        <h2>Text Summary 📃</h2>
+        <h2 style={{ paddingTop: "10px" }}>Text Summary 📃</h2>
         <p>
-          No. of Words :{" "}
+          <strong>No. of Words</strong> :{" "}
           {
             //it will split white space with one or more. and white space include new line also
             text.split(/\s+/).filter((element) => {
@@ -198,13 +210,15 @@ export default function TextForm(props) {
             }).length
           }
         </p>
-        <p>No. of Characters : {text.length}</p>
+        <p>
+          <strong>No. of Characters</strong> : {text.length}
+        </p>
         <p>
           {0.008 *
             text.split(" ").filter((element) => {
               return element.length !== 0;
             }).length}{" "}
-          Minutes Read
+          :<strong> Minutes Read </strong>
         </p>
         <h2>Preview Text</h2>
         <p>{text.length > 0 ? text : "Enter something to preview here 👇🏾"}</p>
