@@ -52,19 +52,30 @@ export default function TextForm(props) {
   const handleOnChange = (event) => {
     setText(event.target.value);
   };
+
   //title case funtion
   const toCapitalize = () => {
     const mySentence = text;
-    const finalSentence = mySentence.replace(/(^\w{1})|(\s+\w{1})/g, (letter) =>
-      letter.toUpperCase()
+    const finalSentence = mySentence.replace(
+      /(^\w|\s\w)(\S*)/g,
+      (_, m1, m2) => m1.toUpperCase() + m2.toLowerCase()
     );
     setText(finalSentence);
     props.showAlert("Captialize", "success");
   };
 
+  //sentence case
+  const sentenceCase = () => {
+    const str = text;
+    const capitalized =
+      str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
+    setText(capitalized);
+    props.showAlert(" ", "success");
+  };
+
   //example logic
   const Example = () => {
-    const exampleString = `Welcome to String Converter\nDeveloper Contact : Shubham Kumar\n\nNow you can Perform Every Operation Listed Below`;
+    const exampleString = `Welcome to String Converter\nDeveloper Contact : Shubham Kumar\n\nTo change the case of your text, paste it here and press the corresponding buttons below`;
     setText(exampleString);
   };
 
@@ -121,7 +132,7 @@ export default function TextForm(props) {
             );
           }
           setText(checkedText);
-          props.showAlert("Your Grammer Mistakes has been Fixed!", "success");
+          props.showAlert("Grammer Mistakes Fixed!", "success");
         }
       })
       .catch(function (error) {
@@ -157,7 +168,7 @@ export default function TextForm(props) {
           className="btn btn-danger btn-sm mx-2 my-2"
           onClick={Example}
         >
-          Example
+          Example Text
         </button>
         <button
           disabled={text.length === 0}
@@ -179,12 +190,11 @@ export default function TextForm(props) {
         <button
           disabled={text.length === 0}
           type="button"
-          className="btn btn-warning btn-sm mx-2 my-2"
-          onClick={toReverse}
+          className="btn btn-success btn-sm mx-2 my-2"
+          onClick={sentenceCase}
         >
-          <b className="fas fa-history"> Reverse String</b>
+          Sentence case
         </button>
-
         <button
           disabled={text.length === 0}
           type="button"
@@ -194,6 +204,14 @@ export default function TextForm(props) {
           Title Case
         </button>
 
+        <button
+          disabled={text.length === 0}
+          type="button"
+          className="btn btn-warning btn-sm mx-2 my-2"
+          onClick={toReverse}
+        >
+          <b className="fas fa-history"> Reverse String</b>
+        </button>
         <button
           disabled={text.length === 0}
           type="button"
@@ -222,11 +240,10 @@ export default function TextForm(props) {
         </button>
         <button
           disabled={text.length === 0}
-          type="button"
-          className="btn btn-success btn-sm mx-2 my-2"
-          onClick={download}
+          className="btn btn-primary btn-sm mx-1 my-1"
+          onClick={Encrypt}
         >
-          <i className="fas fa-download"></i> Download
+          Encrypt Data
         </button>
         <button
           disabled={text.length === 0}
@@ -238,10 +255,11 @@ export default function TextForm(props) {
 
         <button
           disabled={text.length === 0}
-          className="btn btn-primary btn-sm mx-1 my-1"
-          onClick={Encrypt}
+          type="button"
+          className="btn btn-success btn-sm mx-2 my-2"
+          onClick={download}
         >
-          Encrypt Data
+          <i className="fas fa-download"></i> Download
         </button>
       </div>
       <div
