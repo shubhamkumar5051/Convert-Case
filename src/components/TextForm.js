@@ -33,7 +33,7 @@ export default function TextForm(props) {
         return element.length !== 0;
       }).length > 0
     )
-      props.showAlert("Cleared", "success");
+      props.showAlert("Text Cleared", "danger");
   };
 
   const CopyText = () => {
@@ -75,8 +75,9 @@ export default function TextForm(props) {
 
   //example logic
   const Example = () => {
-    const exampleString = `Welcome to String Converter\nDeveloper Contact : Shubham Kumar\n\nTo change the case of your text, paste it here and press the corresponding buttons below`;
+    const exampleString = `Welcome to String Converter.. To change the case of your text, paste it here and press the corresponding buttons below`;
     setText(exampleString);
+    props.showAlert("Demo Example", "success");
   };
 
   //reverse string logic
@@ -84,6 +85,7 @@ export default function TextForm(props) {
     const mySentence = text;
     const finalSentence = mySentence.split("").reverse().join("");
     setText(finalSentence);
+    props.showAlert("Reversed", "success");
   }
   // download feature
   function download(filename = "string-converter.txt") {
@@ -163,9 +165,14 @@ export default function TextForm(props) {
           ></textarea>
         </div>
         <button
-          // disabled={text.length === 0}
+          // style={{ backgroundColor: "#0a8a7e", borderColor: "#0a8a7e" }}
+          style={{
+            backgroundImage: "linear-gradient(#d72df4 ,#2a0707cf)",
+            color: "white",
+            border: "none",
+          }}
           type="button"
-          className="btn btn-danger btn-sm mx-2 my-2"
+          className="btn btn-dark mx-2 my-2"
           onClick={Example}
         >
           Example Text
@@ -271,8 +278,10 @@ export default function TextForm(props) {
         n
       >
         <h2 style={{ paddingTop: "10px" }}>Text Summary 📃</h2>
-        <p>
-          <strong>No. of Words</strong> :{" "}
+        <p style={{ color: props.mode === "light" ? "red" : "#f05f2a" }}>
+          <strong style={{ color: props.mode === "light" ? "black" : "white" }}>
+            No. of Words :{" "}
+          </strong>{" "}
           {
             //it will split white space with one or more. and white space include new line also
             text.split(/\s+/).filter((element) => {
@@ -280,15 +289,20 @@ export default function TextForm(props) {
             }).length
           }
         </p>
-        <p>
-          <strong>No. of Characters</strong> : {text.length}
+        <p style={{ color: props.mode === "light" ? "red" : "#f05f2a" }}>
+          <strong style={{ color: props.mode === "light" ? "black" : "white" }}>
+            No. of Characters :{" "}
+          </strong>{" "}
+          {text.length}
         </p>
-        <p>
+        <p style={{ color: props.mode === "light" ? "red" : "#f05f2a" }}>
+          <strong style={{ color: props.mode === "light" ? "black" : "white" }}>
+            Minutes read :{" "}
+          </strong>
           {0.008 *
             text.split(" ").filter((element) => {
               return element.length !== 0;
             }).length}{" "}
-          :<strong> Minutes Read </strong>
         </p>
         <h2>Preview Text</h2>
         <p>{text.length > 0 ? text : "Enter something to preview here 👇🏾"}</p>
