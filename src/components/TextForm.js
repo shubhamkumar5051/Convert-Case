@@ -141,6 +141,7 @@ export default function TextForm(props) {
         console.log(error);
       });
   };
+
   return (
     <>
       <div
@@ -150,9 +151,9 @@ export default function TextForm(props) {
         }}
       >
         <h2>{props.heading}</h2>
-        <div className="mb-3">
+        <div className="mb-3 shadow-lg">
           <textarea
-            className="form-control"
+            className="form-control "
             placeholder="Enter the Text"
             id="myBox"
             rows="6"
@@ -161,113 +162,120 @@ export default function TextForm(props) {
             style={{
               backgroundColor: props.mode === "light" ? "white" : "#0d0e1a",
               color: props.mode === "light" ? "black" : "white",
+              border: "4px solid grey",
             }}
           ></textarea>
         </div>
-        <button
-          // style={{ backgroundColor: "#0a8a7e", borderColor: "#0a8a7e" }}
-          style={{
-            backgroundImage: "linear-gradient(#d72df4 ,#2a0707cf)",
-            color: "white",
-            border: "none",
-          }}
-          type="button"
-          className="btn btn-dark mx-2 my-2"
-          onClick={Example}
-        >
-          Example Text
-        </button>
-        <button
-          disabled={text.length === 0}
-          type="button"
-          className="btn btn-primary btn-sm mx-2 my-2"
-          onClick={handleOnClick}
-        >
-          TO UPPERCASE <i className="fas fa-arrow-up mx-1"></i>
-        </button>
-        <button
-          disabled={text.length === 0}
-          type="button"
-          className="btn btn-sm btn-success mx-2 my-2"
-          onClick={handleDownClick}
-        >
-          to lowercase <i className="fas fa-arrow-down"></i>
-        </button>
+        <div className="container">
+          <div className="row">
+            <div className="col text-center">
+              <button
+                // style={{ backgroundColor: "#0a8a7e", borderColor: "#0a8a7e" }}
+                style={{
+                  backgroundImage: "linear-gradient(#d72df4 ,#2a0707cf)",
+                  color: "white",
+                  border: "none",
+                }}
+                type="button"
+                className="btn btn-dark mx-2 my-2"
+                onClick={Example}
+              >
+                Example Text
+              </button>
+              <button
+                disabled={text.length === 0}
+                type="button"
+                className="btn btn-primary btn-sm mx-2 my-2"
+                onClick={handleOnClick}
+              >
+                TO UPPERCASE <i className="fas fa-arrow-up mx-1"></i>
+              </button>
+              <button
+                disabled={text.length === 0}
+                type="button"
+                className="btn btn-sm btn-success mx-2 my-2"
+                onClick={handleDownClick}
+              >
+                to lowercase <i className="fas fa-arrow-down"></i>
+              </button>
 
-        <button
-          disabled={text.length === 0}
-          type="button"
-          className="btn btn-success btn-sm mx-2 my-2"
-          onClick={sentenceCase}
-        >
-          Sentence case
-        </button>
-        <button
-          disabled={text.length === 0}
-          type="button"
-          className="btn btn-dark btn-sm mx-2 my-2"
-          onClick={toCapitalize}
-        >
-          Title Case
-        </button>
+              <button
+                disabled={text.length === 0}
+                type="button"
+                className="btn btn-success btn-sm mx-2 my-2"
+                onClick={sentenceCase}
+              >
+                Sentence case
+              </button>
+              <button
+                disabled={text.length === 0}
+                type="button"
+                className="btn btn-dark btn-sm mx-2 my-2"
+                onClick={toCapitalize}
+              >
+                Title Case
+              </button>
 
-        <button
-          disabled={text.length === 0}
-          type="button"
-          className="btn btn-warning btn-sm mx-2 my-2"
-          onClick={toReverse}
-        >
-          <b className="fas fa-history"> Reverse String</b>
-        </button>
-        <button
-          disabled={text.length === 0}
-          type="button"
-          className="btn btn-danger btn-sm mx-2 my-2"
-          onClick={handleClearText}
-        >
-          Clear Text <i className="far fa-trash-alt mx-1"></i>
-        </button>
+              <button
+                disabled={text.length === 0}
+                type="button"
+                className="btn btn-warning btn-sm mx-2 my-2"
+                onClick={toReverse}
+              >
+                <b className="fas fa-history"> Reverse String</b>
+              </button>
+              <button
+                disabled={text.length === 0}
+                type="button"
+                className="btn btn-danger btn-sm mx-2 my-2"
+                onClick={handleClearText}
+              >
+                Clear Text <i className="far fa-trash-alt mx-1"></i>
+              </button>
 
-        <button
-          disabled={text.length === 0}
-          type="button"
-          className="btn btn-warning btn-sm mx-2 my-2"
-          onClick={CopyText}
-        >
-          <i className="fas fa-copy"> Copy to Clipboard</i>
-        </button>
+              <button
+                disabled={text.length === 0}
+                type="button"
+                className="btn btn-warning btn-sm mx-2 my-2"
+                onClick={CopyText}
+              >
+                <i className="fas fa-copy"> Copy to Clipboard</i>
+              </button>
 
-        <button
-          disabled={text.length === 0}
-          type="button"
-          className="btn btn-primary btn-sm mx-2 my-2"
-          onClick={handleExtraSpaces}
-        >
-          Remove Extra space
-        </button>
-        <button
-          disabled={text.length === 0}
-          className="btn btn-primary btn-sm mx-1 my-1"
-          onClick={Encrypt}
-        >
-          Encrypt Data
-        </button>
-        <button
-          disabled={text.length === 0}
-          className="btn btn-dark btn-sm mx-1 my-1"
-          onClick={handleGrammerCheck}
-        >
-          Fix Grammer mistakes
-        </button>
+              <button
+                disabled={text.length === 0}
+                type="button"
+                className="btn btn-primary btn-sm mx-2 my-2"
+                onClick={handleExtraSpaces}
+              >
+                Remove Extra space
+              </button>
+              <button
+                disabled={text.length === 0}
+                className="btn btn-primary btn-sm mx-1 my-1"
+                onClick={Encrypt}
+              >
+                Encrypt Data
+              </button>
+              <button
+                disabled={text.length === 0}
+                className="btn btn-dark btn-sm mx-1 my-1"
+                onClick={handleGrammerCheck}
+              >
+                Fix Grammer mistakes
+              </button>
 
-        <button
-          disabled={text.length === 0}
-          type="button"
-          className="btn btn-success btn-sm mx-2 my-2"
-          onClick={download}
-        >
-          <i className="fas fa-download"></i> Download
-        </button>
+              <button
+                disabled={text.length === 0}
+                type="button"
+                className="btn btn-success btn-sm mx-2 my-2"
+                onClick={download}
+              >
+                <i className="fas fa-download"></i> Download
+              </button>
+            </div>
+          </div>
+        </div>
       </div>
       <div
         className="container my-3"
@@ -304,6 +312,32 @@ export default function TextForm(props) {
               return element.length !== 0;
             }).length}{" "}
         </p>
+        <p style={{ color: props.mode === "light" ? "red" : "#f05f2a" }}>
+          <strong style={{ color: props.mode === "light" ? "black" : "white" }}>
+            Total No. Of Lines :{" "}
+          </strong>
+          {text.split(/\r\n|\r|\n/).length}
+        </p>
+        <p style={{ color: props.mode === "light" ? "red" : "#f05f2a" }}>
+          <strong style={{ color: props.mode === "light" ? "black" : "white" }}>
+            No. Of Non-Empty Lines :{" "}
+          </strong>
+          {
+            text.split("\n").filter((element) => {
+              return element.length !== 0;
+            }).length
+          }{" "}
+        </p>
+        <p style={{ color: props.mode === "light" ? "red" : "#f05f2a" }}>
+          <strong style={{ color: props.mode === "light" ? "black" : "white" }}>
+            No. Of Empty Lines :{" "}
+          </strong>
+          {text.split(/\r\n|\r|\n/).length -
+            text.split("\n").filter((element) => {
+              return element.length !== 0;
+            }).length}{" "}
+        </p>
+
         <h2>Preview Text</h2>
         <p>{text.length > 0 ? text : "Enter something to preview here 👇🏾"}</p>
       </div>
