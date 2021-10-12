@@ -38,7 +38,7 @@ export default function TextForm(props) {
 
   const CopyText = () => {
     // var text = document.getElementById("myBox");
-    // text.select();
+    //text.select();
     navigator.clipboard.writeText(text); //navigator api
     props.showAlert("Text Copied", "success");
   };
@@ -79,6 +79,17 @@ export default function TextForm(props) {
     setText(exampleString);
     props.showAlert("Demo Example", "success");
   };
+  // random string
+  function randomString() {
+    let length = 100;
+    var result = "";
+    var characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+    var charactersLength = characters.length;
+    for (var i = 0; i < length; i++) {
+      result += characters.charAt(Math.floor(Math.random() * charactersLength));
+    }
+    setText(result);
+  }
 
   //reverse string logic
   function toReverse() {
@@ -106,17 +117,7 @@ export default function TextForm(props) {
       props.showAlert(`Error: Truncate Size > Length of string `, "danger");
     }
   };
-  // random string
-  function randomString() {
-    let length = 100;
-    var result = "";
-    var characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
-    var charactersLength = characters.length;
-    for (var i = 0; i < length; i++) {
-      result += characters.charAt(Math.floor(Math.random() * charactersLength));
-    }
-    setText(result);
-  }
+
   // remove empty lines
   const emptyLines = () => {
     let string = text;
@@ -198,7 +199,7 @@ export default function TextForm(props) {
             className="form-control "
             placeholder="Enter the Text"
             id="myBox"
-            rows="6"
+            rows="8"
             value={text}
             onChange={handleOnChange}
             style={{
@@ -230,6 +231,7 @@ export default function TextForm(props) {
                   color: "white",
                   border: "none",
                 }}
+                type="button"
                 className="btn btn-dark mx-2 my-2"
                 onClick={randomString}
               >
@@ -360,61 +362,79 @@ export default function TextForm(props) {
         }}
         n
       >
-        <h2 style={{ paddingTop: "10px" }}>Text Summary 📃</h2>
-        <p style={{ color: props.mode === "light" ? "red" : "#f05f2a" }}>
-          <strong style={{ color: props.mode === "light" ? "black" : "white" }}>
-            No. of Words :{" "}
-          </strong>{" "}
-          {
-            //it will split white space with one or more. and white space include new line also
-            text.split(/\s+/).filter((element) => {
-              return element.length !== 0;
-            }).length
-          }
-        </p>
-        <p style={{ color: props.mode === "light" ? "red" : "#f05f2a" }}>
-          <strong style={{ color: props.mode === "light" ? "black" : "white" }}>
-            No. of Characters :{" "}
-          </strong>{" "}
-          {text.length}
-        </p>
-        <p style={{ color: props.mode === "light" ? "red" : "#f05f2a" }}>
-          <strong style={{ color: props.mode === "light" ? "black" : "white" }}>
-            Minutes read :{" "}
-          </strong>
-          {0.008 *
-            text.split(" ").filter((element) => {
-              return element.length !== 0;
-            }).length}{" "}
-        </p>
-        <p style={{ color: props.mode === "light" ? "red" : "#f05f2a" }}>
-          <strong style={{ color: props.mode === "light" ? "black" : "white" }}>
-            Total No. Of Lines :{" "}
-          </strong>
-          {text.split(/\r\n|\r|\n/).length}
-        </p>
-        <p style={{ color: props.mode === "light" ? "red" : "#f05f2a" }}>
-          <strong style={{ color: props.mode === "light" ? "black" : "white" }}>
-            No. Of Non-Empty Lines :{" "}
-          </strong>
-          {
-            text.split("\n").filter((element) => {
-              return element.length !== 0;
-            }).length
-          }{" "}
-        </p>
-        <p style={{ color: props.mode === "light" ? "red" : "#f05f2a" }}>
-          <strong style={{ color: props.mode === "light" ? "black" : "white" }}>
-            No. Of Empty Lines :{" "}
-          </strong>
-          {text.split(/\r\n|\r|\n/).length -
-            text.split("\n").filter((element) => {
-              return element.length !== 0;
-            }).length}{" "}
-        </p>
+        <div className="row">
+          <div className="column">
+            <h2 style={{ paddingTop: "10px" }}>Text Summary 📃</h2>
+            <p style={{ color: props.mode === "light" ? "red" : "#f05f2a" }}>
+              <strong
+                style={{ color: props.mode === "light" ? "black" : "white" }}
+              >
+                No. of Words :{" "}
+              </strong>{" "}
+              {
+                //it will split white space with one or more. and white space include new line also
+                text.split(/\s+/).filter((element) => {
+                  return element.length !== 0;
+                }).length
+              }
+            </p>
+            <p style={{ color: props.mode === "light" ? "red" : "#f05f2a" }}>
+              <strong
+                style={{ color: props.mode === "light" ? "black" : "white" }}
+              >
+                No. of Characters :{" "}
+              </strong>{" "}
+              {text.length}
+            </p>
+            <p style={{ color: props.mode === "light" ? "red" : "#f05f2a" }}>
+              <strong
+                style={{ color: props.mode === "light" ? "black" : "white" }}
+              >
+                Minutes read :{" "}
+              </strong>
+              {0.008 *
+                text.split(" ").filter((element) => {
+                  return element.length !== 0;
+                }).length}{" "}
+            </p>
+            <p style={{ color: props.mode === "light" ? "red" : "#f05f2a" }}>
+              <strong
+                style={{ color: props.mode === "light" ? "black" : "white" }}
+              >
+                Total No. Of Lines :{" "}
+              </strong>
+              {text.split(/\r\n|\r|\n/).length}
+            </p>
+            <p style={{ color: props.mode === "light" ? "red" : "#f05f2a" }}>
+              <strong
+                style={{ color: props.mode === "light" ? "black" : "white" }}
+              >
+                No. Of Non-Empty Lines :{" "}
+              </strong>
+              {
+                text.split("\n").filter((element) => {
+                  return element.length !== 0;
+                }).length
+              }{" "}
+            </p>
+            <p style={{ color: props.mode === "light" ? "red" : "#f05f2a" }}>
+              <strong
+                style={{ color: props.mode === "light" ? "black" : "white" }}
+              >
+                No. Of Empty Lines :{" "}
+              </strong>
+              {text.split(/\r\n|\r|\n/).length -
+                text.split("\n").filter((element) => {
+                  return element.length !== 0;
+                }).length}{" "}
+            </p>
 
-        <h2>Preview Text</h2>
-        <p>{text.length > 0 ? text : "Enter something to preview here 👇🏾"}</p>
+            <h2>Preview Text</h2>
+            <p style={{ wordWrap: "break-word" }}>
+              {text.length > 0 ? text : "Enter something to preview here 👇🏾"}
+            </p>
+          </div>
+        </div>
       </div>
     </>
   );
