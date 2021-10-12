@@ -75,7 +75,7 @@ export default function TextForm(props) {
 
   //example logic
   const Example = () => {
-    const exampleString = `Welcome to String Converter.. To change the case of your text, paste it here and press the corresponding buttons below`;
+    const exampleString = `Welcome to String Converter..\nTo change the case of your text, paste it here and press the corresponding buttons below`;
     setText(exampleString);
     props.showAlert("Demo Example", "success");
   };
@@ -87,6 +87,48 @@ export default function TextForm(props) {
     setText(finalSentence);
     props.showAlert("Reversed", "success");
   }
+  //truncate string
+  const toTruncate = () => {
+    const str = text;
+    let num = 0;
+    var temp = 0;
+    num = prompt("Enter the length to Truncate the string");
+    if (str.length > num) {
+      temp = 1;
+      let subStr = str.substring(0, num);
+      setText(subStr);
+    } else {
+      setText(str);
+    }
+    if (temp === 1) {
+      props.showAlert(`String Truncated`, "success");
+    } else {
+      props.showAlert(`Error: Truncate Size > Length of string `, "danger");
+    }
+  };
+  // random string
+  function randomString() {
+    let length = 100;
+    var result = "";
+    var characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+    var charactersLength = characters.length;
+    for (var i = 0; i < length; i++) {
+      result += characters.charAt(Math.floor(Math.random() * charactersLength));
+    }
+    setText(result);
+  }
+  // remove empty lines
+  const emptyLines = () => {
+    let string = text;
+    string = string.replace(/^\s*\n/gm, "");
+    setText(string);
+  };
+
+  const whiteSpaces = () => {
+    let string = text;
+    string = string.replace(/\s/g, "");
+    setText(string);
+  };
   // download feature
   function download(filename = "string-converter.txt") {
     const mySentence = text;
@@ -183,6 +225,17 @@ export default function TextForm(props) {
                 Example Text
               </button>
               <button
+                style={{
+                  backgroundImage: "linear-gradient(#d72df4 ,#2a0707cf)",
+                  color: "white",
+                  border: "none",
+                }}
+                className="btn btn-dark mx-2 my-2"
+                onClick={randomString}
+              >
+                Random String
+              </button>
+              <button
                 disabled={text.length === 0}
                 type="button"
                 className="btn btn-primary btn-sm mx-2 my-2"
@@ -232,7 +285,22 @@ export default function TextForm(props) {
               >
                 Clear Text <i className="far fa-trash-alt mx-1"></i>
               </button>
-
+              <button
+                disabled={text.length === 0}
+                type="button"
+                className="btn btn-success btn-sm mx-2 my-2"
+                onClick={toTruncate}
+              >
+                Truncate
+              </button>
+              <button
+                disabled={text.length === 0}
+                type="button"
+                className="btn btn-success btn-sm mx-2 my-2"
+                onClick={emptyLines}
+              >
+                Remove Empty Lines
+              </button>
               <button
                 disabled={text.length === 0}
                 type="button"
@@ -241,7 +309,14 @@ export default function TextForm(props) {
               >
                 <i className="fas fa-copy"> Copy to Clipboard</i>
               </button>
-
+              <button
+                disabled={text.length === 0}
+                type="button"
+                className="btn btn-danger btn-sm mx-2 my-2"
+                onClick={whiteSpaces}
+              >
+                Remove WhiteSpaces
+              </button>
               <button
                 disabled={text.length === 0}
                 type="button"

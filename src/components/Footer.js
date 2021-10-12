@@ -67,10 +67,11 @@ export default function Footer(props) {
             // style={{ backgroundColor: `rgba(0, 0, 0, 0.7)` }}
           >
             <a
+              style={{ textDecoration: "none" }}
               className={`text-${props.mode === "light" ? "dark" : "light"}`}
               href="https://portfolio-shubhamkr5051.netlify.app/"
             >
-              © 2021 Copyright- Shubham kumar
+              © 2021 Copyright- Shubham Kumar
             </a>
           </div>
         </footer>
