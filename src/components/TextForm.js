@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+import "./TextForm.css";
 export default function TextForm(props) {
   const [text, setText] = useState("");
   //   setText("hemlo");
@@ -35,7 +36,7 @@ export default function TextForm(props) {
     )
       props.showAlert("Text Cleared", "danger");
   };
-
+  //copy text
   const CopyText = () => {
     // var text = document.getElementById("myBox");
     //text.select();
@@ -43,6 +44,7 @@ export default function TextForm(props) {
     props.showAlert("Text Copied", "success");
   };
 
+  //handle extra space
   const handleExtraSpaces = () => {
     let newText = text.split(/[ ]+/);
     setText(newText.join(" "));
@@ -75,7 +77,7 @@ export default function TextForm(props) {
 
   //example logic
   const Example = () => {
-    const exampleString = `Welcome to String Converter..\nTo change the case of your text, paste it here and press the corresponding buttons below`;
+    const exampleString = `Welcome to String Converter..\n\nTo change the case of your text, paste it here and press the corresponding buttons below`;
     setText(exampleString);
     props.showAlert("Demo Example", "success");
   };
@@ -125,11 +127,25 @@ export default function TextForm(props) {
     setText(string);
   };
 
+  //remove total whitespaces
   const whiteSpaces = () => {
     let string = text;
     string = string.replace(/\s/g, "");
     setText(string);
   };
+
+  //string to ascii
+  const toAscii = () => {
+    let str = text;
+    let arr = [];
+    let j = 0;
+    for (let i = 0; i < str.length; i++) {
+      arr[j] = str.charCodeAt(i);
+      j++;
+    }
+    setText(arr);
+  };
+
   // download feature
   function download(filename = "string-converter.txt") {
     const mySentence = text;
@@ -147,6 +163,7 @@ export default function TextForm(props) {
     document.body.removeChild(element);
     props.showAlert("Downloading...", "success");
   }
+
   //encrypt
   const Encrypt = () => {
     var str = text;
@@ -213,26 +230,25 @@ export default function TextForm(props) {
           <div className="row">
             <div className="col text-center">
               <button
-                // style={{ backgroundColor: "#0a8a7e", borderColor: "#0a8a7e" }}
-                style={{
-                  backgroundImage: "linear-gradient(#d72df4 ,#2a0707cf)",
-                  color: "white",
-                  border: "none",
-                }}
+                disabled={text.length === 0}
                 type="button"
-                className="btn btn-dark mx-2 my-2"
+                className="btn btn-primary btn-sm mx-2 my-2"
+                onClick={toAscii}
+              >
+                To Ascii
+              </button>
+              <button
+                // style={{ backgroundColor: "#0a8a7e", borderColor: "#0a8a7e" }}
+
+                type="button"
+                className="btn btn-dark mx-2 my-2 btn-sty"
                 onClick={Example}
               >
                 Example Text
               </button>
               <button
-                style={{
-                  backgroundImage: "linear-gradient(#d72df4 ,#2a0707cf)",
-                  color: "white",
-                  border: "none",
-                }}
                 type="button"
-                className="btn btn-dark mx-2 my-2"
+                className="btn btn-dark mx-2 my-2 btn-sty"
                 onClick={randomString}
               >
                 Random String
@@ -365,6 +381,7 @@ export default function TextForm(props) {
         <div className="row">
           <div className="column">
             <h2 style={{ paddingTop: "10px" }}>Text Summary 📃</h2>
+
             <p style={{ color: props.mode === "light" ? "red" : "#f05f2a" }}>
               <strong
                 style={{ color: props.mode === "light" ? "black" : "white" }}
