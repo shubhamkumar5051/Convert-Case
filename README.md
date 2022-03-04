@@ -1,6 +1,14 @@
-This project was bootstrapped with [Create React App](https://onlinestringconverter.netlify.app/).
 
-### `npm start`
+#Description about String converter web App
+
+Developed a String converter web app using React Functional component that Provides instant Text
+
+Summary of Character Count, Word Count, and Minutes Read Statistics for a given Text.
+
+It also has Multiple Features to Perform like Uppercase to Lowercase, Lowercase to Uppercase, title case, sentence case, Clear Text,
+Copy to Clipboard, Encrypt data, Fix grammer mistake, Truncate string, download text and Remove Extra Spaces with Light and Dark Mode.
+
+Tech stack: Reactjs, Javascript, Html, css, Bootstrap5
 
 Light mode of convert-case app
 
